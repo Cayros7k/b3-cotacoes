@@ -6,5 +6,5 @@ Criação de painéis para acompanhar o resultado histórico de 9 empresas que c
 - Criação de um painel com a média móvel do preço de fechamento do pregão.
 - Criação de um painel com a receita líquida trimestral do período analisado.
 
-O processo da transformação de dados com Python está documentado dentro dos código.
+O processo da transformação de dados com Python está documentado dentro dos códigos.
 Utilizamos a biblioteca pandas para estruturar o código e transformá-lo em csv.
