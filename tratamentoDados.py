@@ -1,7 +1,7 @@
 import pandas as pd
 
 # Seleciona o arquivo TXT (Selecionar de acordo com o local onde o arquivo se encontra)
-f_bovespa = './cotaHIST_bruto/COTAHIST_A2019.TXT'
+f_bovespa = './cotaHIST_bruto/COTAHIST_A2023.TXT'
 
 # Define o tamanho dos campos de acordo com o layout do arquivo da B3  
 tamanho_campos=[2,8,2,12,3,12,10,3,4,13,13,13,13,13,13,13,5,18,18,13,1,8,7,13,12,3]
@@ -63,15 +63,16 @@ for coluna in listaVirgula:
 dados_acoes['data_pregao'] = pd.to_datetime(dados_acoes.data_pregao)
 dados_acoes['data_pregao'] = dados_acoes['data_pregao'].dt.strftime('%d/%m/%Y')
 
-# Define o que será apresentado na tabela --> Filtro por código de negociação
-df = dados_acoes[(dados_acoes['cod_negociacao']=="CMIG4")][['nome_empresa', 'codigo_isin', 'tipo_mercado', 'moeda_referencia', 'data_pregao', 'numero_negocios', 'preco_abertura',
-                                                            'preco_minimo', 'preco_medio', 'preco_maximo', 'quantidade_papeis_negociados', 'volume_total_negociado']]
+ls_empresas = [
+    "CSAN3", "CMIG4", "VIIA3", "BRAP4", "RENT3", "TAEE11", "WEGE3", "CMIN3", "SLCE3"
+]
+dados_filtrados = dados_acoes[dados_acoes['cod_negociacao'].isin(ls_empresas)]
 
-#print(df)
+print(dados_filtrados)
 
 # Salva o arquivo no formato csv ---> Pode nomear o arquivo como quiser, no meu exemplo nomeei de "COSAN2023.csv"
-fileO = open('COSAN2019.csv', "w")
-fileO.write(df.to_csv())
+fileO = open('COTAHIST_A2023.csv', "w")
+fileO.write(dados_filtrados.to_csv())
 fileO.close
 
     
